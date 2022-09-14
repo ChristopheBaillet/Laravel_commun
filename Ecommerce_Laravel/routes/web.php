@@ -13,15 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return ('HomePage');
-});
-Route::get('/product', function () {
-    return 'Liste de produits';
-});
-Route::get('/cart', function () {
-    return 'Panier';
-});
-Route::get('/product/{id}', function ($id) {
-    return 'Fiche du produit '.$id;
-});
+Route::get('/', \App\Http\Controllers\HomeController::class);
+Route::get('/cart', \App\Http\Controllers\CartController::class);
+Route::get('/product', [\App\Http\Controllers\ProductController::class, '__invoke']);
+Route::get('/product/{id}', [\App\Http\Controllers\ProductController::class, '__product']);
