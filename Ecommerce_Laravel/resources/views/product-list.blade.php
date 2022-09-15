@@ -2,20 +2,20 @@
 @section('content')
     <h1>Liste des produits</h1>
     <div class='container-fluid d-flex flex-wrap' style='background-color: #d5d5d5'>
-        @for($i = 0; $i < 10; $i++)
+        @foreach($products as $product)
             <div class="card col-4 me-3 ms-3 mb-3 mt-3" style="width: 15rem;">
-                <a href="product/1">
-                    <img src="https://www.designevo.com/res/templates/thumb_small/red-jar-and-strawberry-jam.webp"
+                <a href="product/{{$product->id}}">
+                    <img src="{{asset($product->image)}}"
                          style="height: 200px; border-bottom: darkgrey 1px dotted;">
                 </a>
                 <div class="card-body d-flex flex-column justify-content-between">
                     <div class="container">
-                        <h5 class="card-title">Produit{{$i}}</h5>
+                        <h5 class="card-title"></h5>
                         <p>
-                            <span style="text-decoration: line-through red;">100 </span>
-                            € TTC <strong>-50%</strong></p>
+                            <span style="text-decoration: line-through red;">{{$product->name}}</span>
+                            € TTC <strong>-{{$product->discount}}%</strong></p>
                         <p>Prix :
-                            <strong>50 </strong>€
+                            <strong>{{$product->price}}</strong>€
                         </p>
                     </div>
                     <div class="container">
@@ -23,14 +23,14 @@
                             <div class="container mb-3 ps-0 pe-0">
                                 <label class="mb-1" for="quantity_purchased">Quantité : </label>
                                 <input class="mb-3" type="number" name="quantity_purchased" min="0" value="0">
-                                <input type="hidden" value="" name="id">
-                                <input type="hidden" value="" name="name">
+                                <input type="hidden" value="{{$product->id}}" name="id">
                                 <input type="submit" class="btn btn-primary" value="Ajouter au panier">
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
-        @endfor
+        @endforeach
     </div>
+
 @endsection
