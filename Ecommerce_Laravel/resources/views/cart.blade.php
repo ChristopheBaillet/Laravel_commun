@@ -66,6 +66,6 @@
         <td>1 €</td>
     </tr>
 </table>
-<a href="product" class="btn btn-primary">Return</a>
+<a href="{{route('product')}}" class="btn btn-primary">Return</a>
 <a href="#" class="btn btn-success">Valider la commande</a>
 @endsection

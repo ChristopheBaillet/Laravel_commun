@@ -8,17 +8,29 @@ use App\Models\Product;
 
 class ProductController extends Controller
 {
-    public function index($orderby = null)
+    public function index(Request $request)
     {
-        if ($orderby !== null){
-            return view('product-list', ['products' => Product::orderBy($orderby)->get()]);
+        $orderby = null;
+        if ($request->has('order')){
+            switch ($request->get('order')){
+                case 'name':
+                    $orderby = 'name';
+                    break;
+                case 'price':
+                    $orderby = 'price';
+                    break;
+                default :
+                    $orderby = 'id';
+            }
+            $products = Product::orderBy($orderby)->get();
+        }else {
+            $products = Product::all();
         }
-        return view('product-list', ['products' => Product::all()]);
+        return view('product-list', ['products' => $products]);
     }
 
-    public function show($id)
+    public function show(Product $product)
     {
-        $product = Product::find($id);
         return view('product-details', ['product' => $product]);
     }
 
