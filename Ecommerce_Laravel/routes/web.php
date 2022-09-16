@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,7 +16,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [\App\Http\Controllers\HomeController::class, 'index']);
-Route::get('/cart', [\App\Http\Controllers\CartController::class, 'index']);
-Route::get('/product', [\App\Http\Controllers\ProductController::class, 'index']);
-Route::get('/product/{id}', [\App\Http\Controllers\ProductController::class, 'show']);
+Route::get('/', [HomeController::class, 'index']);
+Route::get('/cart', [CartController::class, 'index']);
+Route::get('/product', [ProductController::class, 'index']);
+Route::get('/product/{id}', [ProductController::class, 'show']);
+Route::get('/product{orderby}', [ProductController::class, 'index']);
+

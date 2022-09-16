@@ -1,6 +1,9 @@
 @extends('layout')
 @section('content')
     <h1>Liste des produits</h1>
+    <a href="productprice" class="btn btn-primary">Order by Price</a>
+    <a href="productname" class="btn btn-primary">Order by name</a>
+    <a href="product" class="btn btn-primary">Normal</a>
     <div class='container-fluid d-flex flex-wrap' style='background-color: #d5d5d5'>
         @foreach($products as $product)
             <div class="card col-4 me-3 ms-3 mb-3 mt-3" style="width: 15rem;">
