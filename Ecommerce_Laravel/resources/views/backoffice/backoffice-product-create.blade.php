@@ -1,4 +1,4 @@
-@extends('backoffice-layout')
+@extends('backoffice.backoffice-layout')
 @section('content')
     <h1>Add a product to the datatbase</h1>
     <form class="row g-3">
@@ -9,8 +9,9 @@
         <div class="col-md-4">
             <label for="validationDefault02" class="form-label">Category</label>
             <select class="form-select" id="validationDefault02" required>
-                <option selected disabled value="">Choose...</option>
-                <option>...</option>
+                @foreach($categories as $categorie)
+                    <option value="">{{$categorie->name}}</option>
+                @endforeach
             </select>
         </div>
         <div class="col-md-4">

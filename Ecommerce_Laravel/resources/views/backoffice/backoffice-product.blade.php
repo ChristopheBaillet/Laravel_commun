@@ -1,4 +1,4 @@
-@extends('backoffice-layout')
+@extends('backoffice.backoffice-layout')
 @section('content')
     <table class="table">
         <tr>

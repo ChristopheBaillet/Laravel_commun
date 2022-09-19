@@ -1,4 +1,4 @@
-@extends('backoffice-layout')
+@extends('backoffice.backoffice-layout')
 @section('content')
     <h1>Voici mon petit backoffice</h1>
     <p class="fs-5 col-md-8">Tu vas voir c'est cozy ici. On s'amuse bien à edit la base de données</p>

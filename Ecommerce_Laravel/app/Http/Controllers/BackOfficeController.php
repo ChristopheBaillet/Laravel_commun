@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -9,18 +10,19 @@ class BackOfficeController extends Controller
 {
     public function home()
     {
-        return view('backoffice');
+        return view('backoffice.backoffice');
     }
 
     public function index()
     {
         $products = Product::all();
-        return view('backoffice-product', ['products' => $products]);
+        return view('backoffice.backoffice-product', ['products' => $products]);
     }
 
     public function create()
     {
-        return view("backoffice-product-create");
+        $categories = Category::select('name')->get();
+        return view("backoffice.backoffice-product-create", ['categories' => $categories]);
     }
 
     /**
