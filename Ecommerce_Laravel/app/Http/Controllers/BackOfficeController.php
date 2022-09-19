@@ -20,9 +20,7 @@ class BackOfficeController extends Controller
 
     public function create()
     {
-        $product = new Product;
-        $product->name = 'test';
-        dd($product);
+        return view("backoffice-product-create");
     }
 
     /**
@@ -76,7 +74,7 @@ class BackOfficeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete($id)
     {
         //
     }

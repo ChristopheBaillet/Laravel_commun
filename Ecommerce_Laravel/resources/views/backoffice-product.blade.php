@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('backoffice-layout')
 @section('content')
     <table class="table">
         <tr>
@@ -27,8 +27,8 @@
                 <td>{{$product->available}}</td>
                 <td>{{$product->quantity}}</td>
                 <td>{{$product->discount}}</td>
-                <td><a href="{{route("backofficeAction", ['product' => $product, 'action' => 'edit'])}}" class="btn btn-outline-dark">edit</a></td>
-                <td><a href="{{route("backofficeAction", ['product' => $product, 'action' => 'delete'])}}" class="btn btn-outline-danger">delete</a></td>
+                <td><a href="{{route("backofficeEdit", ['product' => $product, 'action' => 'edit'])}}" class="btn btn-outline-dark">edit</a></td>
+                <td><a href="{{route("backofficeDelete", ['product' => $product, 'action' => 'delete'])}}" class="btn btn-outline-danger">delete</a></td>
             </tr>
         @endforeach
 
