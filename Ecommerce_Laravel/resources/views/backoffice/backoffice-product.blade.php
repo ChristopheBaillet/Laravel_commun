@@ -6,7 +6,6 @@
             <td>name</td>
             <td>price</td>
             <td>image</td>
-            <td>description</td>
             <td>weight</td>
             <td>category_id</td>
             <td>available</td>
@@ -21,14 +20,13 @@
                 <td>{{$product->name}}</td>
                 <td>{{$product->price}}</td>
                 <td>{{$product->image}}</td>
-                <td>{{$product->description}}</td>
                 <td>{{$product->weight}}</td>
                 <td>{{$product->category_id}}</td>
                 <td>{{$product->available}}</td>
                 <td>{{$product->quantity}}</td>
                 <td>{{$product->discount}}</td>
-                <td><a href="{{route("backofficeEdit", ['product' => $product, 'action' => 'edit'])}}" class="btn btn-outline-dark">edit</a></td>
-                <td><a href="{{route("backofficeDelete", ['product' => $product, 'action' => 'delete'])}}" class="btn btn-outline-danger">delete</a></td>
+                <td><a href="{{route("backofficeEdit", ['product' => $product])}}" class="btn btn-outline-dark">edit</a></td>
+                <td><a href="{{route("backofficeDelete", ['product' => $product])}}" class="btn btn-outline-danger">delete</a></td>
             </tr>
         @endforeach
 

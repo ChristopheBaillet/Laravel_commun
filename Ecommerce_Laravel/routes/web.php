@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\BackOfficeController;
 use App\Http\Controllers\CartController;
-use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
@@ -29,6 +28,5 @@ Route::post('/backoffice/product', [BackOfficeController::class, 'store'])->name
 Route::get('/backoffice/product/create', [BackOfficeController::class, 'create'])->name('backofficeCreate');
 Route::get('/backoffice/product/{product}', [BackOfficeController::class, 'show'])->name('backofficeShow');
 Route::put('/backoffice/product/{product}', [BackOfficeController::class, 'update'])->name('backofficeUpdate');
-Route::delete('/backoffice/product/{product}', [BackOfficeController::class, 'destroy'])->name('backofficeDelete');
+Route::get('/backoffice/product/{product}', [BackOfficeController::class, 'destroy'])->name('backofficeDelete');
 Route::get('/backoffice/product/{product}/edit', [BackOfficeController::class, 'edit'])->name('backofficeEdit');
-Route::get('/backoffice/categories', [CategoryController::class, 'index'])->name('backofficeCategory');
