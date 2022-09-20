@@ -34,7 +34,7 @@ class BackOfficeController extends Controller
         $product = new Product;
         $product = $this->addAttributesToProduct($request, $product);
         $product->save();
-        return redirect(route('backofficeProductIndex'));
+        return redirect(route('products.index'));
     }
 
 
@@ -64,7 +64,7 @@ class BackOfficeController extends Controller
         $product = Product::find($id);
         $product = $this->addAttributesToProduct($request, $product);
         $product->save();
-        return redirect(route('backofficeProductIndex'));
+        return redirect(route('products.index'));
     }
 
 
@@ -72,7 +72,7 @@ class BackOfficeController extends Controller
     {
         $product = Product::find($product->id);
         $product->delete();
-        return redirect(route('backofficeProductIndex'));
+        return redirect(route('products.index'));
     }
 
     public function convert(Request $request)

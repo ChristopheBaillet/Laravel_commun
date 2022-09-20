@@ -1,7 +1,7 @@
 @extends("backoffice.layout")
 @section("content")
     <h1>Add a customer to the datatbase</h1>
-    <form class="row g-3" method="post" action="{{route('backofficeCustomerStore')}}">
+    <form class="row g-3" method="post" action="{{route('customers.store')}}">
         {{csrf_field()}}
         <div class="col-md-6">
             <label for="first_name" class="form-label">First name</label>

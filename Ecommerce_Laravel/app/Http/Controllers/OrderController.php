@@ -50,7 +50,7 @@ class OrderController extends Controller
         $order = new Order;
         $order = $this->convert($request, $order);
         $order->save();
-        return redirect(route("backofficeOrderIndex"));
+        return redirect(route("orders.index"));
     }
 
     /**
@@ -89,7 +89,7 @@ class OrderController extends Controller
     {
         $order = $this->convert($request, $order);
         $order->save();
-        return redirect(route('backofficeOrderIndex'));
+        return redirect(route('orders.index'));
     }
 
     /**
@@ -102,7 +102,7 @@ class OrderController extends Controller
     {
         $order = Order::find($id);
         $order->delete();
-        return redirect(route("backofficeOrderIndex"));
+        return redirect(route("orders.index"));
     }
 
     public function convert(Request $request, Order $order)

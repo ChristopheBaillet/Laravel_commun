@@ -18,11 +18,11 @@
                 <td>{{$customer->postal_code}}</td>
                 <td>{{$customer->city}}</td>
                 <td>
-                    <a href="{{route("backofficeCustomerEdit", ['customer' => $customer])}}"
+                    <a href="{{route("customers.edit", ['customer' => $customer])}}"
                        class="btn btn-outline-dark">edit</a>
                 </td>
                 <td>
-                    <form action="{{route("backofficeCustomerDelete", ['customer' => $customer])}}" method="post">
+                    <form action="{{route("customers.destroy", ['customer' => $customer])}}" method="post">
                         @method('DELETE')
                         {{csrf_field()}}
                         <input type="submit" value="Delete" class="btn btn-outline-danger">
@@ -32,5 +32,5 @@
         @endforeach
 
     </table>
-    <a href="{{route("backofficeCustomerCreate")}}" class="btn btn-outline-success">add a customer</a>
+    <a href="{{route("customers.create")}}" class="btn btn-outline-success">add a customer</a>
 @endsection

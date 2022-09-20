@@ -6,7 +6,7 @@
             ajoute des produits, des customers, des orders.</p>
 
         <div class="mb-2 mt-5">
-            <a href="{{route('backofficeProductIndex')}}" class="btn btn-primary btn-lg px-4">Go to Products</a>
+            <a href="{{route('products.index')}}" class="btn btn-primary btn-lg px-4">Go to Products</a>
         </div>
     </div>
 @endsection

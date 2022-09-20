@@ -40,7 +40,7 @@ class CustomerController extends Controller
         $customer = new Customer;
         $customer = $this->convert($request,$customer);
         $customer->save();
-        return redirect(route("backofficeCustomerIndex"));
+        return redirect(route("customers.index"));
     }
 
     /**
@@ -77,7 +77,7 @@ class CustomerController extends Controller
     {
         $customer = $this->convert($request, $customer);
         $customer->save();
-        return redirect(route('backofficeCustomerIndex'));
+        return redirect(route('customers.index'));
     }
 
     /**
@@ -90,7 +90,7 @@ class CustomerController extends Controller
     {
         $customer = Customer::find($id);
         $customer->delete();
-        return redirect(route("backofficeCustomerIndex"));
+        return redirect(route("customers.index"));
     }
 
     public function test()

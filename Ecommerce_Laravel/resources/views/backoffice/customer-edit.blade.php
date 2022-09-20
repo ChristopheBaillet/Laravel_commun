@@ -1,7 +1,7 @@
 @extends("backoffice.layout")
 @section("content")
     <h1>Edit a customer to the datatbase</h1>
-    <form class="row g-3" method="post" action="{{route('backofficeCustomerUpdate', [$customer->id])}}">
+    <form class="row g-3" method="post" action="{{route('customers.update', [$customer->id])}}">
         @method('PUT')
         {{csrf_field()}}
         <div class="col-md-6">

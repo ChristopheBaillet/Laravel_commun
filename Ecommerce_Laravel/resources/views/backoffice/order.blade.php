@@ -19,11 +19,11 @@
                 <td>{{$order->date}}</td>
                 <td>{{$order->total}}</td>
                 <td>
-                    <a href="{{route("backofficeOrderEdit", ['order' => $order])}}"
+                    <a href="{{route("orders.edit", ['order' => $order])}}"
                        class="btn btn-outline-dark">edit</a>
                 </td>
                 <td>
-                    <form action="{{route("backofficeOrderDelete", ['order' => $order])}}" method="post">
+                    <form action="{{route("orders.destroy", ['order' => $order])}}" method="post">
                         @method('DELETE')
                         {{csrf_field()}}
                         <input type="submit" value="Delete" class="btn btn-outline-danger">
@@ -33,5 +33,5 @@
         @endforeach
 
     </table>
-    <a href="{{route("backofficeOrderCreate")}}" class="btn btn-outline-success mb-5">add an order</a>
+    <a href="{{route("orders.create")}}" class="btn btn-outline-success mb-5">add an order</a>
 @endsection

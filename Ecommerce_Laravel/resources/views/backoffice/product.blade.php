@@ -27,10 +27,10 @@
                 <td>{{$product->quantity}}</td>
                 <td>{{$product->discount}}</td>
                 <td>
-                    <a href="{{route("backofficeProductEdit", ['product' => $product])}}" class="btn btn-outline-dark">edit</a>
+                    <a href="{{route("products.edit", ['product' => $product])}}" class="btn btn-outline-dark">edit</a>
                 </td>
                 <td>
-                    <form style="margin: 0;" action="{{route("backofficeProductDelete", ['product' => $product])}}" method="post">
+                    <form style="margin: 0;" action="{{route("products.destroy", ['product' => $product])}}" method="post">
                         @method('DELETE')
                         {{csrf_field()}}
                         <input type="submit" value="Delete" class="btn btn-outline-danger">
@@ -40,5 +40,5 @@
         @endforeach
 
     </table>
-    <a href="{{route("backofficeProductCreate")}}" class="btn btn-outline-success mb-5">add a product</a>
+    <a href="{{route("products.create")}}" class="btn btn-outline-success mb-5">add a product</a>
 @endsection
