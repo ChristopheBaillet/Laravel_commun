@@ -1,6 +1,7 @@
-@extends('backoffice.backoffice-layout')
+@extends('backoffice.layout')
 @section('content')
-    <table class="table">
+    <h1 class="mb-3">Liste des produits dans la base de données</h1>
+    <table class="table" style="vertical-align: middle">
         <tr>
             <td>id</td>
             <td>name</td>
@@ -19,17 +20,17 @@
                 <td>{{$product->id}}</td>
                 <td>{{$product->name}}</td>
                 <td>{{$product->price}}</td>
-                <td>{{$product->image}}</td>
+                <td><img  style="height: 100px;" src="{{asset($product->image)}}" alt=""></td>
                 <td>{{$product->weight}}</td>
                 <td>{{$product->category_id}}</td>
                 <td>{{$product->available}}</td>
                 <td>{{$product->quantity}}</td>
                 <td>{{$product->discount}}</td>
                 <td>
-                    <a href="{{route("backofficeEdit", ['product' => $product])}}" class="btn btn-outline-dark">edit</a>
+                    <a href="{{route("backofficeProductEdit", ['product' => $product])}}" class="btn btn-outline-dark">edit</a>
                 </td>
                 <td>
-                    <form action="{{route("backofficeDelete", ['product' => $product])}}" method="post">
+                    <form style="margin: 0;" action="{{route("backofficeProductDelete", ['product' => $product])}}" method="post">
                         @method('DELETE')
                         {{csrf_field()}}
                         <input type="submit" value="Delete" class="btn btn-outline-danger">
@@ -39,5 +40,5 @@
         @endforeach
 
     </table>
-    <a href="{{route("backofficeCreate")}}" class="btn btn-outline-success">add a product</a>
+    <a href="{{route("backofficeProductCreate")}}" class="btn btn-outline-success mb-5">add a product</a>
 @endsection

@@ -1,7 +1,7 @@
-@extends('backoffice.backoffice-layout')
+@extends('backoffice.layout')
 @section('content')
     <h1>Edit a product</h1>
-    <form class="row g-3" method="post" action="{{route('backofficeUpdate', [$product->id])}}">
+    <form class="row g-3" method="post" action="{{route('backofficeProductUpdate', [$product->id])}}">
         @method('PUT')
         {{csrf_field()}}
         <div class="col-md-6">
@@ -12,7 +12,7 @@
             <label for="category" class="form-label">Category</label>
             <select class="form-select" id="category" name="category" required>
                 @foreach($categories as $categorie)
-                    <option >{{$categorie->name}}</option>
+                    <option>{{$categorie->name}}</option>
                 @endforeach
             </select>
         </div>
@@ -46,7 +46,7 @@
             <div class="form-check">
                 <label for="available" class="form-check-label">available</label>
                 <input type="checkbox" name="available" id="available" {{$product->available}}
-                       class="form-check-input">
+                class="form-check-input">
             </div>
         </div>
         <div class="col-12">
