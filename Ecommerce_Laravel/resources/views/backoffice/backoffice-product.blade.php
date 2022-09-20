@@ -25,8 +25,16 @@
                 <td>{{$product->available}}</td>
                 <td>{{$product->quantity}}</td>
                 <td>{{$product->discount}}</td>
-                <td><a href="{{route("backofficeEdit", ['product' => $product])}}" class="btn btn-outline-dark">edit</a></td>
-                <td><a href="{{route("backofficeDelete", ['product' => $product])}}" class="btn btn-outline-danger">delete</a></td>
+                <td>
+                    <a href="{{route("backofficeEdit", ['product' => $product])}}" class="btn btn-outline-dark">edit</a>
+                </td>
+                <td>
+                    <form action="{{route("backofficeDelete", ['product' => $product])}}" method="post">
+                        @method('DELETE')
+                        {{csrf_field()}}
+                        <input type="submit" value="Delete" class="btn btn-outline-danger">
+                    </form>
+                </td>
             </tr>
         @endforeach
 
