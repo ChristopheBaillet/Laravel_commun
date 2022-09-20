@@ -114,7 +114,7 @@
             </div>
         </nav>
 
-        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 d-flex flex-column align-items-center justify-content-center" style="height: 80vh;">
             <div class="chartjs-size-monitor">
                 <div class="chartjs-size-monitor-expand">
                     <div class=""></div>
