@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class CustomerController extends Controller
@@ -31,18 +32,21 @@ class CustomerController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-
+        $customer = new Customer;
+        $customer = $this->convert($request,$customer);
+        $customer->save();
+        return redirect(route("backofficeCustomerIndex"));
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -53,34 +57,56 @@ class CustomerController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        //
+        $customer = Customer::find($id);
+        return view("backoffice.customer-edit", ["customer" => $customer]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Customer $customer)
     {
-        //
+        $customer = $this->convert($request, $customer);
+        $customer->save();
+        return redirect(route('backofficeCustomerIndex'));
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        //
+        $customer = Customer::find($id);
+        $customer->delete();
+        return redirect(route("backofficeCustomerIndex"));
+    }
+
+    public function test()
+    {
+        $product = Product::find(1)->orderProduct()->get();
+        dd($product);
+
+    }
+
+    public function convert(Request $request, Customer $customer)
+    {
+        $customer->first_name = $request->first_name;
+        $customer->last_name = $request->last_name;
+        $customer->address = $request->address;
+        $customer->city = $request->city;
+        $customer->postal_code = intval($request->postal_code);
+        return $customer;
     }
 }

@@ -17,8 +17,8 @@
                    required placeholder="Address">
         </div>
         <div class="col-md-6">
-            <label for="Postal_code" class="form-label">Postal code</label>
-            <input type="number" class="form-control" id="Postal_code" name="Postal_code" required placeholder="Postal code">
+            <label for="postal_code" class="form-label">Postal code</label>
+            <input type="number" class="form-control" id="postal_code" name="postal_code" required placeholder="Postal code">
         </div>
         <div class="col-md-6">
             <label for="city" class="form-label">City</label>

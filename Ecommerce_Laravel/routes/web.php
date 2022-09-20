@@ -43,6 +43,10 @@ Route::delete('/backoffice/customer/{customer}', [CustomerController::class, 'de
 Route::get('/backoffice/customer/{customer}/edit', [CustomerController::class, 'edit'])->name('backofficeCustomerEdit');
 
 
+Route::get('/test', [CustomerController::class, 'test']);
+
+
+
 Route::get('/backoffice/order', [OrderController::class, 'index'])->name('backofficeOrderIndex');
 Route::post('/backoffice/order', [OrderController::class, 'store'])->name('backofficeOrderStore');
 Route::get('/backoffice/order/create', [OrderController::class, 'create'])->name('backofficeOrderCreate');
@@ -50,3 +54,4 @@ Route::get('/backoffice/order/{order}', [OrderController::class, 'show'])->name(
 Route::put('/backoffice/order/{order}', [OrderController::class, 'update'])->name('backofficeOrderUpdate');
 Route::delete('/backoffice/order/{order}', [OrderController::class, 'destroy'])->name('backofficeOrderDelete');
 Route::get('/backoffice/order/{order}/edit', [OrderController::class, 'edit'])->name('backofficeOrderEdit');
+

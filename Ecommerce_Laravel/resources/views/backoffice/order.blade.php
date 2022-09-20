@@ -33,5 +33,5 @@
         @endforeach
 
     </table>
-    <a href="{{route("backofficeOrderCreate")}}" class="btn btn-outline-success mb-5">add a product</a>
+    <a href="{{route("backofficeOrderCreate")}}" class="btn btn-outline-success mb-5">add an order</a>
 @endsection

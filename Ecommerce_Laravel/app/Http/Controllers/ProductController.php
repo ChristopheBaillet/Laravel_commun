@@ -11,8 +11,8 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         $orderby = null;
-        if ($request->has('order')){
-            switch ($request->get('order')){
+        if ($request->has('order')) {
+            switch ($request->get('order')) {
                 case 'name':
                     $orderby = 'name';
                     break;
@@ -23,7 +23,7 @@ class ProductController extends Controller
                     $orderby = 'id';
             }
             $products = Product::orderBy($orderby)->get();
-        }else {
+        } else {
             $products = Product::all();
         }
         return view('product-list', ['products' => $products]);

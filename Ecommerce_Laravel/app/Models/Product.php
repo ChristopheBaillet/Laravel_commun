@@ -8,5 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     use HasFactory;
+
     public $timestamps = false;
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    public function orderProduct(){
+        return $this->belongsTo(OrderProduct::class);
+    }
 }
