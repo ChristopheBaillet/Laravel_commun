@@ -16,6 +16,7 @@ class ProductController extends Controller
         return view('backoffice.home');
     }
 
+
     public function index(): View
     {
         $products = Product::all();
@@ -31,12 +32,15 @@ class ProductController extends Controller
 
     public function store(Request $request): RedirectResponse
     {
-
-        $request = $this->convert($request);
-        $product = new Product;
-        $product = $this->addAttributesToProduct($request, $product);
-        $product->save();
-        return redirect(route('products.index'));
+        if ($this->requestIsValid($request))
+        {
+            $request = $this->convert($request);
+            $product = new Product;
+            $product = $this->addAttributesToProduct($request, $product);
+            $product->save();
+            return redirect(route('products.index'));
+        }
+        return back();
     }
 
 
@@ -61,10 +65,14 @@ class ProductController extends Controller
 
     public function update(Request $request, Product $product): RedirectResponse
     {
-        $request = $this->convert($request);
-        $product = $this->addAttributesToProduct($request, $product);
-        $product->save();
-        return redirect(route('products.index'));
+        if ($this->requestIsValid($request))
+        {
+            $request = $this->convert($request);
+            $product = $this->addAttributesToProduct($request, $product);
+            $product->save();
+            return redirect(route('products.index'));
+        }
+        return back();
     }
 
 
@@ -100,5 +108,10 @@ class ProductController extends Controller
         $product->discount = $request->discount;
         $product->quantity = $request->quantity;
         return $product;
+    }
+
+    public function requestIsValid(Request $request): bool
+    {
+       return $request->price > 0;
     }
 }
