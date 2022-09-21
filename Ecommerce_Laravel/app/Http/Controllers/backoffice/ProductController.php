@@ -6,28 +6,30 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 
 class ProductController extends Controller
 {
-    public function home()
+    public function home(): View
     {
         return view('backoffice.home');
     }
 
-    public function index()
+    public function index(): View
     {
         $products = Product::all();
         return view('backoffice.product.index', ['products' => $products]);
     }
 
-    public function create()
+    public function create(): View
     {
         $categories = Category::select('name')->get();
         return view("backoffice.product.create", ['categories' => $categories]);
     }
 
 
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
 
         $request = $this->convert($request);
@@ -44,7 +46,7 @@ class ProductController extends Controller
     }
 
 
-    public function edit($id)
+    public function edit(int $id): View
     {
         $product = Product::find($id);
         if ($product->available === 0) {
@@ -58,7 +60,7 @@ class ProductController extends Controller
     }
 
 
-    public function update(Request $request, $id)
+    public function update(Request $request, int $id): RedirectResponse
     {
         $request = $this->convert($request);
         $product = Product::find($id);
@@ -68,14 +70,14 @@ class ProductController extends Controller
     }
 
 
-    public function destroy(Product $product)
+    public function destroy(int $id): RedirectResponse
     {
-        $product = Product::find($product->id);
+        $product = Product::find($id);
         $product->delete();
         return redirect(route('products.index'));
     }
 
-    public function convert(Request $request)
+    public function convert(Request $request): Request
     {
         if ($request->available === "on") {
             $request->available = 1;
@@ -90,7 +92,7 @@ class ProductController extends Controller
         return $request;
     }
 
-    public function addAttributesToProduct(Request $request, Product $product)
+    public function addAttributesToProduct(Request $request, Product $product): Product
     {
         $product->name = $request->name;
         $product->price = $request->price;
