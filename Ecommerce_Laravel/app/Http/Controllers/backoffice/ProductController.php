@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\backoffice;
 
+use App\Http\Controllers\Controller;
 use App\Models\Category;
-use App\Models\Customer;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
-class BackOfficeController extends Controller
+class ProductController extends Controller
 {
     public function home()
     {
@@ -17,13 +17,13 @@ class BackOfficeController extends Controller
     public function index()
     {
         $products = Product::all();
-        return view('backoffice.product', ['products' => $products]);
+        return view('backoffice.product.index', ['products' => $products]);
     }
 
     public function create()
     {
         $categories = Category::select('name')->get();
-        return view("backoffice.product-create", ['categories' => $categories]);
+        return view("backoffice.product.create", ['categories' => $categories]);
     }
 
 
@@ -54,7 +54,7 @@ class BackOfficeController extends Controller
         }
         $product->category = Category::find($product->category_id)->name;
         $categories = Category::select('name')->get();
-        return view("backoffice.product-edit", ["product" => $product, "categories" => $categories]);
+        return view("backoffice.product.edit", ["product" => $product, "categories" => $categories]);
     }
 
 

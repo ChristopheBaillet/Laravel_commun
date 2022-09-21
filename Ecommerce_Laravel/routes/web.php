@@ -1,11 +1,13 @@
 <?php
 
-use App\Http\Controllers\BackOfficeController;
+
+use App\Http\Controllers\backoffice\CategoryController;
+use App\Http\Controllers\backoffice\CustomerController;
+use App\Http\Controllers\backoffice\OrderController;
 use App\Http\Controllers\CartController;
-use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\backoffice\ProductController as BOProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,10 +26,11 @@ Route::get('/cart', [CartController::class, 'index'])->name('cart');
 Route::get('/product', [ProductController::class, 'index'])->name('product');
 Route::get('/product/{product}', [ProductController::class, 'show'])->name('productID');
 
-Route::get('/backoffice/home', [BackOfficeController::class, 'home'])->name('backoffice');
+Route::get('/backoffice/home', [BOProductController::class, 'home'])->name('backoffice');
 
-Route::resource("products", BackOfficeController::class);
+Route::resource("products", BOProductController::class);
 Route::resource("orders", OrderController::class);
 Route::resource("customers", CustomerController::class);
+Route::resource("categories", CategoryController::class);
 
 Route::get('/test', [CustomerController::class, 'test']);

@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\backoffice;
 
+use App\Http\Controllers\Controller;
 use App\Models\Customer;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -16,7 +17,7 @@ class CustomerController extends Controller
     public function index()
     {
         $customers = Customer::all();
-        return view("backoffice.customer", ["customers" => $customers]);
+        return view("backoffice.customer.index", ["customers" => $customers]);
     }
 
     /**
@@ -26,7 +27,7 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        return view("backoffice.customer-create");
+        return view("backoffice.customer.create");
     }
 
     /**
@@ -63,7 +64,7 @@ class CustomerController extends Controller
     public function edit($id)
     {
         $customer = Customer::find($id);
-        return view("backoffice.customer-edit", ["customer" => $customer]);
+        return view("backoffice.customer.edit", ["customer" => $customer]);
     }
 
     /**

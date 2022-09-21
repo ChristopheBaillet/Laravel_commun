@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\backoffice;
 
-use App\Models\Category;
+use App\Http\Controllers\Controller;
 use App\Models\Customer;
 use App\Models\Order;
 use Illuminate\Http\Request;
@@ -25,7 +25,7 @@ class OrderController extends Controller
                 }
             }
         }
-        return view("backoffice.order", ["orders" => $orders]);
+        return view("backoffice.order.index", ["orders" => $orders]);
     }
 
     /**
@@ -36,7 +36,7 @@ class OrderController extends Controller
     public function create()
     {
         $customers = Customer::select('first_name')->get();
-        return view("backoffice.order-create", ["customers" => $customers]);
+        return view("backoffice.order.create", ["customers" => $customers]);
     }
 
     /**
@@ -75,7 +75,7 @@ class OrderController extends Controller
         $customers = Customer::select('first_name')->get();
         $order = Order::find($id);
         $order->customer = Customer::select("first_name")->where("id", $order->customer_id)->get()[0]->first_name;
-        return view("backoffice.order-edit", ["order" => $order, "customers" => $customers]);
+        return view("backoffice.order.edit", ["order" => $order, "customers" => $customers]);
     }
 
     /**
