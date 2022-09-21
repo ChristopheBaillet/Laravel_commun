@@ -43,16 +43,15 @@ class OrderController extends Controller
     }
 
 
-    public function show(int $id)
+    public function show(Order $order)
     {
         //
     }
 
 
-    public function edit(int $id): View
+    public function edit(Order $order): View
     {
         $customers = Customer::select('first_name')->get();
-        $order = Order::find($id);
         $order->customer = Customer::select("first_name")->where("id", $order->customer_id)->get()[0]->first_name;
         return view("backoffice.order.edit", ["order" => $order, "customers" => $customers]);
     }
@@ -66,9 +65,8 @@ class OrderController extends Controller
     }
 
 
-    public function destroy(int $id): RedirectResponse
+    public function destroy(Order $order): RedirectResponse
     {
-        $order = Order::find($id);
         $order->delete();
         return redirect(route("orders.index"));
     }

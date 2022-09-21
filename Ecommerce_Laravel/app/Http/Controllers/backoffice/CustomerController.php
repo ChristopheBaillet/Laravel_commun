@@ -33,15 +33,14 @@ class CustomerController extends Controller
         return redirect(route("customers.index"));
     }
 
-    public function show(int $id)
+    public function show(Customer $customer)
     {
         //
     }
 
 
-    public function edit(int $id): View
+    public function edit(Customer $customer): View
     {
-        $customer = Customer::find($id);
         return view("backoffice.customer.edit", ["customer" => $customer]);
     }
 
@@ -54,17 +53,16 @@ class CustomerController extends Controller
     }
 
 
-    public function destroy(int $id): RedirectResponse
+    public function destroy(Customer $customer): RedirectResponse
     {
-        $customer = Customer::find($id);
         $customer->delete();
         return redirect(route("customers.index"));
     }
 
     public function test()
     {
-        $product = Product::find(1)->orderProduct()->get();
-        dd($product);
+        $category = Product::find(3)->category->name;
+        return view("backoffice.test", ["category" =>$category]);
 
     }
 

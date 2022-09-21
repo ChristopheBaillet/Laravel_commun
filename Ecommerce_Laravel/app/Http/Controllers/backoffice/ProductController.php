@@ -40,15 +40,14 @@ class ProductController extends Controller
     }
 
 
-    public function show($id)
+    public function show(Product $product): View
     {
-
+        return view("backoffice.test", ["product"=> $product]);
     }
 
 
-    public function edit(int $id): View
+    public function edit(Product $product): View
     {
-        $product = Product::find($id);
         if ($product->available === 0) {
             $product->available = "";
         } else {
@@ -60,19 +59,17 @@ class ProductController extends Controller
     }
 
 
-    public function update(Request $request, int $id): RedirectResponse
+    public function update(Request $request, Product $product): RedirectResponse
     {
         $request = $this->convert($request);
-        $product = Product::find($id);
         $product = $this->addAttributesToProduct($request, $product);
         $product->save();
         return redirect(route('products.index'));
     }
 
 
-    public function destroy(int $id): RedirectResponse
+    public function destroy(Product $product): RedirectResponse
     {
-        $product = Product::find($id);
         $product->delete();
         return redirect(route('products.index'));
     }

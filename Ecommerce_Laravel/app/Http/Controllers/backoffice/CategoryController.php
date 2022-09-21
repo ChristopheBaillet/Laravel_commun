@@ -4,6 +4,7 @@ namespace App\Http\Controllers\backoffice;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
 use Illuminate\Contracts\View\View;
@@ -33,35 +34,27 @@ class CategoryController extends Controller
         return redirect()->route("categories.index");
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show(int $id)
+
+    public function show(Category $category)
     {
-        //
+        return view("backoffice.category.show", ["category" => $category]);
     }
 
-    public function edit(int $id):View
+    public function edit(Category $category):View
     {
-        $category = Category::find($id);
         return view("backoffice.category.edit", ["category" => $category]);
     }
 
 
-    public function update(Request $request, int $id): RedirectResponse
+    public function update(Request $request, Category $category): RedirectResponse
     {
-        $category = Category::find($id);
         $category->name = $request->name;
         $category->save();
         return redirect()->route("categories.index");
     }
 
-    public function destroy(int $id): RedirectResponse
+    public function destroy(Category $category): RedirectResponse
     {
-        $category = Category::find($id);
         $category->delete();
         return redirect()->route("categories.index");
     }

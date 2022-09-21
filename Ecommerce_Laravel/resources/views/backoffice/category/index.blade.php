@@ -10,7 +10,7 @@
         @foreach($categories as $category)
             <tr>
                 <td>{{$category->id}}</td>
-                <td>{{$category->name}}</td>
+                <td><a href="{{route("categories.show", ["category" => $category->id])}}">{{$category->name}}</a></td>
                 <td>
                     <a href="{{route("categories.edit", ['category' => $category])}}"
                        class="btn btn-outline-dark">edit</a>
