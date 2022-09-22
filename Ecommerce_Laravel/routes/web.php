@@ -22,7 +22,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/cart', [CartController::class, 'index'])->name('cart');
 Route::get('/product', [ProductController::class, 'index'])->name('product');
 Route::get('/product/{product}', [ProductController::class, 'show'])->name('productID');
 
@@ -32,5 +31,7 @@ Route::resource("products", BOProductController::class);
 Route::resource("orders", OrderController::class);
 Route::resource("customers", CustomerController::class);
 Route::resource("categories", CategoryController::class);
+
+Route::get("/cart", [CartController::class, "index"])->name("cart.index");
 
 Route::get('/test', [CustomerController::class, 'test']);

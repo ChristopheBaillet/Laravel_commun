@@ -1,5 +1,12 @@
 @extends('layout')
 @section('content')
+    @if (\Session::has('error'))
+        <div class="alert alert-danger">
+            <ul>
+                <li>{!! \Session::get('error') !!}</li>
+            </ul>
+        </div>
+    @endif
     <h1>Liste des produits</h1>
     <a href="{{route('product', ['order' => 'price'])}}" class="btn btn-primary">Order by Price</a>
     <a href="{{route('product', ['order' => 'name'])}}" class="btn btn-primary">Order by name</a>
@@ -13,16 +20,16 @@
                 </a>
                 <div class="card-body d-flex flex-column justify-content-between">
                     <div class="container">
-                        <h5 class="card-title"></h5>
+                        <h5 class="card-title">{{$product->name}}</h5>
                         <p>
-                            <span style="text-decoration: line-through red;">{{$product->name}}</span>
+                            <span style="text-decoration: line-through red;">{{$product->price}}</span>
                             € TTC <strong>-{{$product->discount}}%</strong></p>
                         <p>Prix :
                             <strong>{{$product->price}}</strong>€
                         </p>
                     </div>
                     <div class="container">
-                        <form method="get" action="{{route('cart')}}">
+                        <form method="get" action="{{route('cart.index')}}">
                             <div class="container mb-3 ps-0 pe-0">
                                 <label class="mb-1" for="quantity_purchased">Quantité : </label>
                                 <input class="mb-3" type="number" name="quantity_purchased" min="0" value="0">

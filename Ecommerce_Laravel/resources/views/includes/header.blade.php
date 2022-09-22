@@ -5,7 +5,7 @@
             Commerce
         </a>
         <ul class="nav nav-pills">
-            <li class="nav-item"><a href="{{route('cart')}}" class="nav-link active" aria-current="page">Panier</a></li>
+            <li class="nav-item"><a href="{{route('cart.index')}}" class="nav-link active" aria-current="page">Panier</a></li>
         </ul>
     </div>
 </nav>
