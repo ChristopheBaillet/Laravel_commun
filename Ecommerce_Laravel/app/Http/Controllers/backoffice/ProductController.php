@@ -32,21 +32,20 @@ class ProductController extends Controller
 
     public function store(Request $request): RedirectResponse
     {
-        if ($this->requestIsValid($request))
-        {
-            $request = $this->convert($request);
-            $product = new Product;
-            $product = $this->addAttributesToProduct($request, $product);
-            $product->save();
-            return redirect(route('products.index'));
-        }
-        return back();
+        $request = $this->validateRequest($request);
+        $request = $this->convert($request);
+        $product = new Product;
+        $product = $this->addAttributesToProduct($request, $product);
+        $product->save();
+
+        return redirect(route('products.index'));
+
     }
 
 
     public function show(Product $product): View
     {
-        return view("backoffice.test", ["product"=> $product]);
+        return view("backoffice.test", ["product" => $product]);
     }
 
 
@@ -59,26 +58,27 @@ class ProductController extends Controller
         }
         $product->category = Category::find($product->category_id)->name;
         $categories = Category::select('name')->get();
+
         return view("backoffice.product.edit", ["product" => $product, "categories" => $categories]);
     }
 
 
     public function update(Request $request, Product $product): RedirectResponse
     {
-        if ($this->requestIsValid($request))
-        {
-            $request = $this->convert($request);
-            $product = $this->addAttributesToProduct($request, $product);
-            $product->save();
-            return redirect(route('products.index'));
-        }
-        return back();
+        $request = $this->validateRequest($request);
+        $request = $this->convert($request);
+        $product = $this->addAttributesToProduct($request, $product);
+        $product->save();
+
+        return redirect(route('products.index'));
+
     }
 
 
     public function destroy(Product $product): RedirectResponse
     {
         $product->delete();
+
         return redirect(route('products.index'));
     }
 
@@ -94,6 +94,7 @@ class ProductController extends Controller
         $request->weight = intval($request->weight);
         $request->discount = intval($request->discount);
         $request->quantity = intval($request->quantity);
+
         return $request;
     }
 
@@ -107,11 +108,17 @@ class ProductController extends Controller
         $product->available = $request->available;
         $product->discount = $request->discount;
         $product->quantity = $request->quantity;
+
         return $product;
     }
 
-    public function requestIsValid(Request $request): bool
+    public function validateRequest(Request $request)
     {
-       return $request->price > 0;
+        $request->validate([
+            "name" => "required",
+            "price" => "required | integer | min:1"
+        ]);
+
+        return $request;
     }
 }
